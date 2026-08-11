@@ -19,6 +19,12 @@ import { Food } from './schemas/food.schema';
 export class FoodController {
   constructor(private readonly foodService: FoodService) {}
 
+  // for seeding database
+  @Post('bulk')
+  async createBulk(@Body() createFoodDtos: CreateFoodDto[]): Promise<Food[]> {
+    return this.foodService.insertMany(createFoodDtos);
+  }
+
   @Post()
   async create(@Body() createFoodDto: CreateFoodDto): Promise<Food> {
     return this.foodService.create(createFoodDto);

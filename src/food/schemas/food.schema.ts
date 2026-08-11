@@ -13,6 +13,21 @@ export class Food {
 
   @Prop({ required: true })
   price!: number;
+
+  @Prop({ required: true })
+  description!: string;
+
+  @Prop({ required: false })
+  imageUrl?: string;
+
+  @Prop({ default: false })
+  isOutOfStock!: boolean;
+
+  @Prop({ type: [String], default: [] })
+  allergens!: string[];
+
+  @Prop({ required: false })
+  prepTimeMins?: number;
 }
 
 export const FoodSchema = SchemaFactory.createForClass(Food);

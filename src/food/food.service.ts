@@ -34,4 +34,11 @@ export class FoodService {
     const result = await this.foodModel.findByIdAndDelete(id).exec();
     return result !== null;
   }
+
+  // for seeding database
+  async insertMany(createFoodDtos: CreateFoodDto[]): Promise<Food[]> {
+    const docs = await this.foodModel.insertMany(createFoodDtos);
+    return docs as unknown as Food[];
+  }
+
 }
