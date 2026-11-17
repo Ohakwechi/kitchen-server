@@ -7,7 +7,7 @@ async function bootstrap() {
   app.enableCors();
 
   // Listen on PORT assigned by Render, or 3000 locally
-  const port = process.env.PORT || 3001;
+  const port = process.env.PORT || 3000;
   await app.listen(port);
 }
 bootstrap();
