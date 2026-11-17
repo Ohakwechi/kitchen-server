@@ -3,15 +3,15 @@ import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class OnboardUserDto {
   @IsString()
   @IsNotEmpty()
-  name: string;
+  name!: string;
 
   @IsString()
   @IsNotEmpty()
-  phone: string;
+  phone!: string;
 
   @IsEmail()
   @IsNotEmpty()
-  email: string;
+  email!: string;
 
   @IsString()
   @IsOptional()
@@ -21,5 +21,5 @@ export class OnboardUserDto {
 export class QuickLoginDto {
   @IsString()
   @IsNotEmpty()
-  identifier: string; // Accepts either WhatsApp phone or email
+  identifier!: string; // Accepts either WhatsApp phone or email
 }
