@@ -1,4 +1,3 @@
-// src/users/users.controller.ts
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { OnboardUserDto } from './dto/onboard-user.dto';
@@ -9,6 +8,7 @@ export class UsersController {
 
   @Post('onboard')
   async onboard(@Body() dto: OnboardUserDto) {
+    console.log('Incoming onboard payload:', dto); // <-- Check your terminal logs when you click submit!
     return this.usersService.onboardResident(dto);
   }
 
