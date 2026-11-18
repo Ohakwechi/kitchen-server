@@ -1,25 +1,32 @@
-import { IsEmail, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsEmail, IsNotEmpty, IsOptional, IsString, Matches } from 'class-validator';
 
 export class OnboardUserDto {
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'Full name is required' })
   name!: string;
 
   @IsString()
-  @IsNotEmpty()
+  @IsNotEmpty({ message: 'WhatsApp phone number is required' })
   phone!: string;
 
-  @IsEmail()
-  @IsNotEmpty()
+  @IsEmail({}, { message: 'Enter a valid email address' })
   email!: string;
 
   @IsString()
   @IsOptional()
   location?: string;
+
+  @IsString()
+  @Matches(/^\d{4}$/, { message: 'PIN must be exactly 4 digits' })
+  pin!: string;
 }
 
-export class QuickLoginDto {
+export class LoginUserDto {
   @IsString()
-  @IsNotEmpty()
-  identifier!: string; // Accepts either WhatsApp phone or email
+  @IsNotEmpty({ message: 'Phone number or email is required' })
+  identifier!: string;
+
+  @IsString()
+  @Matches(/^\d{4}$/, { message: 'Enter your 4-digit PIN' })
+  pin!: string;
 }

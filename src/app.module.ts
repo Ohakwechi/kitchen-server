@@ -6,6 +6,7 @@ import { LaundryModule } from './laundry/laundry.module';
 import { HairModule } from './hair/hair.module';
 import { GreenModule } from './green/green.module';
 import { UsersModule } from './users/users.module';
+import { OrdersModule } from './orders/orders.module';
 
 @Module({
   imports: [
@@ -21,7 +22,8 @@ import { UsersModule } from './users/users.module';
     LaundryModule,
     HairModule,
     GreenModule,
-    UsersModule
+    UsersModule,
+    OrdersModule
   ],
 })
 export class AppModule {}
