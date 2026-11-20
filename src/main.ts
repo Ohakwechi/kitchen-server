@@ -3,25 +3,20 @@ import { ValidationPipe } from '@nestjs/common';
 import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule);
+  try {
+    console.log('1. Starting NestJS bootstrap...');
+    const app = await NestFactory.create(AppModule);
 
-  // Enable CORS so your Next.js frontend (localhost & Vercel) can connect
-  app.enableCors({
-    origin: true,
-    credentials: true,
-  });
+    app.enableCors();
+    app.useGlobalPipes(new ValidationPipe({ whitelist: true, transform: true }));
 
-  // Automatically validate DTOs (4-digit PIN, email, phone) & strip unknown fields
-  app.useGlobalPipes(
-    new ValidationPipe({
-      whitelist: true,
-      forbidNonWhitelisted: false,
-      transform: true,
-    }),
-  );
-
-  const port = process.env.PORT || 3001;
-  await app.listen(port, '0.0.0.0');
-  console.log(`Buttns API running on port ${port}`);
+    const port = process.env.PORT || 3001;
+    console.log(`2. Attempting to bind port ${port}...`);
+    await app.listen(port, '0.0.0.0');
+    console.log(`3. Buttns API live on port ${port}`);
+  } catch (err) {
+    console.error('FATAL BOOTSTRAP ERROR:', err);
+    process.exit(1);
+  }
 }
 bootstrap();
